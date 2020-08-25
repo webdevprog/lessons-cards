@@ -1,9 +1,10 @@
 import React from 'react';
 import Courses from './Courses';
 import { connect } from 'react-redux';
-import { getCourses, toggleCurrency } from '../../redux-store/course-reducer';
+import { getCourses, toggleCurrency, getFilterCourses } from '../../redux-store/course-reducer';
 import './courses.scss';
 import SwitcherCurrency from '../common/SwitcherCurrency/SwitcherCurrency';
+import FilterForm from '../common/FilterForm/FilterForm';
 
 class CoursesContainer extends React.Component {
 
@@ -11,10 +12,16 @@ class CoursesContainer extends React.Component {
         this.props.getCourses();
     }
 
+    submit = values => {
+        this.props.getFilterCourses(values);
+    }
+
     render() {
+        
         return (
             <section class="courses-wrapper">
                 <h2>Витрина</h2>
+                <FilterForm onSubmit={this.submit} />
                 <SwitcherCurrency
                     classWrapper="courses-wrapper__switcher"
                     currencyBonus={this.props.currencyBonus}
@@ -35,4 +42,4 @@ let mapStateToProps = (state) => ({
     currencyBonus: state.coursePage.currencyBonus
 });
 
-export default connect(mapStateToProps, { getCourses, toggleCurrency })(CoursesContainer);
+export default connect(mapStateToProps, { getCourses, toggleCurrency, getFilterCourses })(CoursesContainer);
