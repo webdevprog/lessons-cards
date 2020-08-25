@@ -7,6 +7,7 @@ const FILTER_COURSES = 'FILTER_COURSES';
 let initialState = {
     courses: [],
     currencyBonus: false,
+    searchResult: null
 }
 
 const courseReducer = (state = initialState, action) => {
@@ -25,24 +26,28 @@ const courseReducer = (state = initialState, action) => {
             }
 
         case FILTER_COURSES:
-            let filteredCourses = [...state.courses];
-            Object.keys(action.filterData).length && Object.keys(action.filterData).map((signName) => {
-                filteredCourses = filteredCourses.filter((item) => {
-                    switch (signName) {
-                        case 'title':
-                            let regexp = new RegExp(action.filterData[signName], "gi");
-                            return regexp.test(item[signName]);
-                        case 'grade':
-                            let gradeArr = item[signName].split(';');
-                            return gradeArr.includes(action.filterData[signName]);
-                        default:
-                            return item[signName] === action.filterData[signName]
-                    }
-                })
-            })
+            let filteredCourses;
+            if (Object.keys(action.filterData).length) {
+                filteredCourses = [...state.courses];
+                Object.keys(action.filterData).map((signName) => {
+                    filteredCourses = filteredCourses.filter((item) => {
+                        switch (signName) {
+                            case 'title':
+                                let regexp = new RegExp(action.filterData[signName], "gi");
+                                return regexp.test(item[signName]);
+                            case 'grade':
+                                let gradeArr = item[signName].split(';');
+                                return gradeArr.includes(action.filterData[signName]);
+                            default:
+                                return item[signName] === action.filterData[signName]
+                        }
+                    })
+                });
+            }
             return {
                 ...state,
-                courses: filteredCourses
+                courses: filteredCourses === undefined ? [...state.courses] : filteredCourses,
+                searchResult: filteredCourses !== undefined ? filteredCourses.length ? true : false : null
             }
 
         default:
@@ -62,7 +67,6 @@ export const getCourses = () => async (dispatch) => {
 export const getFilterCourses = (filterData) => async (dispatch) => {
     let response = await coursesAPI.getCourses();
     await dispatch(setCourses(response));
-
     dispatch(filterCourses(filterData));
 }
 

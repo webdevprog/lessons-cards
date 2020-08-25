@@ -17,15 +17,18 @@ class CoursesContainer extends React.Component {
     }
 
     render() {
-        
+
         return (
             <section class="courses-wrapper">
                 <h2>Витрина</h2>
-                <FilterForm onSubmit={this.submit} />
                 <SwitcherCurrency
                     classWrapper="courses-wrapper__switcher"
                     currencyBonus={this.props.currencyBonus}
                     toggleCurrency={this.props.toggleCurrency}
+                />
+                <FilterForm
+                    onSubmit={this.submit}
+                    searchResult={this.props.searchResult}
                 />
                 <Courses
                     items={this.props.courses}
@@ -39,7 +42,8 @@ class CoursesContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     courses: state.coursePage.courses,
-    currencyBonus: state.coursePage.currencyBonus
+    currencyBonus: state.coursePage.currencyBonus,
+    searchResult: state.coursePage.searchResult
 });
 
 export default connect(mapStateToProps, { getCourses, toggleCurrency, getFilterCourses })(CoursesContainer);
