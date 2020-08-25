@@ -1,10 +1,12 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import CoursesContainer from './components/Courses/CoursesContainer';
 
 function App() {
   return (
-    <CoursesContainer />
+    <div className="container">
+      <CoursesContainer />
+    </div>
   );
 }
 

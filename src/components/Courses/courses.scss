@@ -1,0 +1,14 @@
+.courses-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 55px 30px;
+}
+
+.courses-wrpper  {
+    & > h2 {
+        text-align: center;
+        margin: 25px 0;
+        font-size: 36px;
+        font-weight: 400;
+    }
+}
