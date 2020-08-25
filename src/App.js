@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
+import CoursesContainer from './components/Courses/CoursesContainer';
 
 function App() {
   return (
-    <div>test</div>
+    <CoursesContainer />
   );
 }
 
