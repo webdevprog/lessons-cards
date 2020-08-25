@@ -1,0 +1,36 @@
+.switcher-currency {
+
+    &-btn {
+        display: flex;
+
+        &__item {
+            background-color: #00c1ff;
+            padding: 5px 15px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+
+            &:first-child {
+                border-radius: 10px 0 0 10px;
+            }
+
+            &:last-child {
+                border-radius: 0 10px 10px 0;
+            }
+        }
+
+        &_active {
+            &_rub {
+                .switcher-currency-btn_rub {
+                    background-color: #00aee6;
+                }
+            }
+
+            &_bonus {
+                .switcher-currency-btn_bonus {
+                    background-color: #00aee6;
+                }
+            }
+        }
+    }
+}
