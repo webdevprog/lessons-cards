@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './course.scss';
 
 const Course = ({ courseId, subject, grade, genre, shopUrl, price, priceBonus, showBonus }) => {
-    const [isPrice, showPrice] = useState(0);
+    const [isPrice, showPrice] = useState(false);
 
     let classes = grade.split(';');
     let classesFormat = classes.length === 1 ? classes[0] : classes[0] + ' - ' + classes[classes.length - 1];
@@ -20,7 +20,7 @@ const Course = ({ courseId, subject, grade, genre, shopUrl, price, priceBonus, s
                         className="course-item__btn"
                         onClick={() => showPrice(!isPrice)}
                     >
-                        {isPrice ? !showBonus ? price + ' руб' : priceBonus+' бонусов' : 'Попробовать'}
+                        {isPrice ? !showBonus ? price + ' руб' : priceBonus + ' бонусов' : 'Попробовать'}
                     </span>
                 </div>
             </div>

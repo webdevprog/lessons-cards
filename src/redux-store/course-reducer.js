@@ -29,7 +29,7 @@ const courseReducer = (state = initialState, action) => {
             let filteredCourses;
             if (Object.keys(action.filterData).length) {
                 filteredCourses = [...state.courses];
-                Object.keys(action.filterData).map((signName) => {
+                Object.keys(action.filterData).forEach((signName) => {
                     filteredCourses = filteredCourses.filter((item) => {
                         switch (signName) {
                             case 'title':

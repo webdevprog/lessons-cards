@@ -2,37 +2,29 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
 let FilterForm = (props) => {
-    const { handleSubmit, searchResult} = props;
+    const { handleSubmit, searchResult } = props;
+    const classes = [];
+    const subject = ["Алгебра", "Английский язык", "Биология", "География", "Геометрия", "Демо-версия", "Информатика", "История", "                    Литература", "Математика", "Обществознание", "Окружающий мир", "Робототехника", "Русский язык", "Физика", "Химия"];
+    const genre = ["Демо", "Задачник", "Подготовка к ВПР", "Подготовка к ЕГЭ", "Рабочая тетрадь"];
+
+    for (let i = 1; i <= 11; i++) {
+        classes.push(<option key={i}>{i}</option>)
+    }
     return (
-        <div>
+        <div className="form-container">
             <form onSubmit={handleSubmit}>
                 <div>
                     <Field name="subject" component="select">
                         <option value="">Все предметы</option>
-                        <option value="Алгебра">Алгебра</option>
-                        <option value="Биология">Биология</option>
+                        {subject.map((item, index) => (<option key={index}>{item}</option>))}
                     </Field>
                     <Field name="grade" component="select">
                         <option value="">Все классы</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                        <option>11</option>
+                        {classes.map(item => item)}
                     </Field>
                     <Field name="genre" component="select">
                         <option value="">Все жанры</option>
-                        <option value="Демо">Демо</option>
-                        <option value="Задачник">Задачник</option>
-                        <option value="Подготовка к ВПР">Подготовка к ВПР</option>
-                        <option value="Подготовка к ЕГЭ">Подготовка к ЕГЭ</option>
-                        <option value="Рабочая тетрадь">Рабочая тетрадь</option>
+                        {genre.map((item, index) => (<option key={index}>{item}</option>))}
                     </Field>
 
                     <Field name="title" component="input" placeholder="Поиск" />

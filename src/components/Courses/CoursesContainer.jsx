@@ -19,7 +19,7 @@ class CoursesContainer extends React.Component {
     render() {
 
         return (
-            <section class="courses-wrapper">
+            <section className="courses-wrapper">
                 <h2>Витрина</h2>
                 <SwitcherCurrency
                     classWrapper="courses-wrapper__switcher"

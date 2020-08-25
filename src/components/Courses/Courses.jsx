@@ -6,7 +6,7 @@ const Courses = ({ items, currencyBonus }) => {
     return (
         <div class="courses-container">
             {
-                items.map(item => <Course {...item} showBonus={currencyBonus} />)
+                items.map(item => <Course key={item.courseId} {...item} showBonus={currencyBonus} />)
             }
         </div>
     )
