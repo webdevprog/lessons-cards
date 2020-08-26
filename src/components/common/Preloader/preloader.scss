@@ -33,6 +33,7 @@ $color-5;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    flex: 1 0 auto;
 
     @for $i from 1 through 5 {
         &__item-#{$i} {

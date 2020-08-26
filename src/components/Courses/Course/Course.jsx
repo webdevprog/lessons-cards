@@ -17,7 +17,7 @@ const Course = ({ courseId, subject, grade, genre, shopUrl, price, priceBonus, s
                 <div className="course-item-footer">
                     <div><a className="course-item__more" href={shopUrl}>Подробнее</a></div>
                     <span
-                        className="course-item__btn"
+                        className={`course-item__btn ${isPrice ? 'course-item__btn_active':''}`}
                         onClick={() => showPrice(!isPrice)}
                     >
                         {isPrice ? !showBonus ? price + ' руб' : priceBonus + ' бонусов' : 'Попробовать'}

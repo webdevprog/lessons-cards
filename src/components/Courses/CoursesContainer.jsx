@@ -21,16 +21,19 @@ class CoursesContainer extends React.Component {
 
         return (
             <section className="courses-wrapper">
-                <h2>Витрина</h2>
-                <SwitcherCurrency
-                    classWrapper="courses-wrapper__switcher"
-                    currencyBonus={this.props.currencyBonus}
-                    toggleCurrency={this.props.toggleCurrency}
-                />
-                <FilterForm
-                    onSubmit={this.submit}
-                    searchResult={this.props.searchResult}
-                />
+                <header className="courses-header">
+                    <h2>Витрина</h2>
+                    <SwitcherCurrency
+                        classWrapper="courses-wrapper__switcher"
+                        currencyBonus={this.props.currencyBonus}
+                        toggleCurrency={this.props.toggleCurrency}
+                    />
+                    <FilterForm
+                        onSubmit={this.submit}
+                        searchResult={this.props.searchResult}
+                        isFetching={this.props.isFetching}
+                    />
+                </header>
                 {!this.props.isFetching ?
                     <Courses
                         items={this.props.courses}

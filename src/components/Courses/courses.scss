@@ -5,14 +5,19 @@
 }
 
 .courses-wrapper  {
-    & > h2 {
-        text-align: center;
-        margin: 25px 0;
-        font-size: 36px;
-        font-weight: 400;
-    }
-
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     &__switcher {
         margin: 20px 0;
+    }
+}
+
+.courses-header  {
+    & > h2 {
+        text-align: center;
+        margin: 0 0 25px;
+        font-size: 36px;
+        font-weight: 400;
     }
 }

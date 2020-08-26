@@ -1,8 +1,10 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import './filterform.scss';
+import searchIcon from '../../../assets/img/search.svg'
 
 let FilterForm = (props) => {
-    const { handleSubmit, searchResult } = props;
+    const { handleSubmit, searchResult, isFetching } = props;
     const classes = [];
     const subject = ["Алгебра", "Английский язык", "Биология", "География", "Геометрия", "Демо-версия", "Информатика", "История", "                    Литература", "Математика", "Обществознание", "Окружающий мир", "Робототехника", "Русский язык", "Физика", "Химия"];
     const genre = ["Демо", "Задачник", "Подготовка к ВПР", "Подготовка к ЕГЭ", "Рабочая тетрадь"];
@@ -11,30 +13,38 @@ let FilterForm = (props) => {
         classes.push(<option key={i}>{i}</option>)
     }
     return (
-        <div className="form-container">
-            <form onSubmit={handleSubmit}>
-                <div>
+        <div className="form form-container">
+            <form className="form-filter" onSubmit={handleSubmit}>
+                <div className="form-filter__item">
                     <Field name="subject" component="select">
                         <option value="">Все предметы</option>
                         {subject.map((item, index) => (<option key={index}>{item}</option>))}
                     </Field>
+                </div>
+                <div className="form-filter__item">
                     <Field name="grade" component="select">
                         <option value="">Все классы</option>
                         {classes.map(item => item)}
                     </Field>
+                </div>
+                <div className="form-filter__item">
                     <Field name="genre" component="select">
                         <option value="">Все жанры</option>
                         {genre.map((item, index) => (<option key={index}>{item}</option>))}
                     </Field>
-
-                    <Field name="title" component="input" placeholder="Поиск" />
+                </div>
+                <div className="form-filter__item">
+                    <div className="form-filter__item-search">
+                        <Field name="title" component="input" placeholder="Поиск" />
+                        <img src={searchIcon} alt="Search Icon" />
+                    </div>
                 </div>
             </form>
             {
                 searchResult !== null &&
-                <div>
-                    <h4>Результаты поиска:</h4>
-                    <p>{!searchResult && 'Курсы не найдены'}</p>
+                <div className="notification">
+                    <h4 className="notification__title">Результаты поиска:</h4>
+                    <div className="notification__text">{!searchResult && !isFetching && 'Курсы не найдены'}</div>
                 </div>
             }
 

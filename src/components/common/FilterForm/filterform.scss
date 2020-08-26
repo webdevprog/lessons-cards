@@ -1,0 +1,45 @@
+.form-container {
+    margin-bottom: 30px;
+}
+
+.form-filter {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 0px 20px;
+
+    &__item {
+        &-search {
+            display: flex;
+            align-items: flex-start;
+            input {
+                margin-right: 15px;
+            }
+        }
+    }
+}
+
+.form {
+    input,
+    select {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        border-radius: 6px;
+        background-color: #fff;
+        border: 1px solid #706f6f;
+        margin-bottom: 15px;
+    }
+}
+
+.notification {
+    &__title {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 300;
+        color: #3c3c3b;
+        margin: 20px 0;
+    }
+    &__text {
+        text-align: center;
+    }
+}
