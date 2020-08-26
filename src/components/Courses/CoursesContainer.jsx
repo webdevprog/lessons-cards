@@ -5,6 +5,7 @@ import { getCourses, toggleCurrency, getFilterCourses } from '../../redux-store/
 import './courses.scss';
 import SwitcherCurrency from '../common/SwitcherCurrency/SwitcherCurrency';
 import FilterForm from '../common/FilterForm/FilterForm';
+import Preloader from '../common/Preloader/Preloader';
 
 class CoursesContainer extends React.Component {
 
@@ -30,10 +31,12 @@ class CoursesContainer extends React.Component {
                     onSubmit={this.submit}
                     searchResult={this.props.searchResult}
                 />
-                <Courses
-                    items={this.props.courses}
-                    currencyBonus={this.props.currencyBonus}
-                />
+                {!this.props.isFetching ?
+                    <Courses
+                        items={this.props.courses}
+                        currencyBonus={this.props.currencyBonus}
+                    />
+                    : <Preloader />}
             </section>
         );
     }
@@ -43,7 +46,8 @@ class CoursesContainer extends React.Component {
 let mapStateToProps = (state) => ({
     courses: state.coursePage.courses,
     currencyBonus: state.coursePage.currencyBonus,
-    searchResult: state.coursePage.searchResult
+    searchResult: state.coursePage.searchResult,
+    isFetching: state.coursePage.isFetching,
 });
 
 export default connect(mapStateToProps, { getCourses, toggleCurrency, getFilterCourses })(CoursesContainer);
