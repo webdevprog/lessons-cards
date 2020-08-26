@@ -1,8 +1,7 @@
 import * as axios from "axios";
 
 const krapiplAPI = axios.create({
-    baseURL: 'http://krapipl.imumk.ru:8082/api/',
-    withCredentials: true
+    baseURL: 'http://krapipl.imumk.ru:8082/api/'
 });
 
 export const coursesAPI = {
