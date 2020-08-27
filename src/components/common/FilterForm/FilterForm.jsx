@@ -4,21 +4,20 @@ import './filterform.scss';
 import searchIcon from '../../../assets/img/search.svg'
 
 let FilterForm = (props) => {
-    const { handleSubmit, searchResult, isFetching } = props;
+    const { handleSubmit, searchResult, isFetching, selects } = props;
     const classes = [];
-    const subject = ["Алгебра", "Английский язык", "Биология", "География", "Геометрия", "Демо-версия", "Информатика", "История", "                    Литература", "Математика", "Обществознание", "Окружающий мир", "Робототехника", "Русский язык", "Физика", "Химия"];
-    const genre = ["Демо", "Задачник", "Подготовка к ВПР", "Подготовка к ЕГЭ", "Рабочая тетрадь"];
 
     for (let i = 1; i <= 11; i++) {
         classes.push(<option key={i}>{i}</option>)
     }
+
     return (
         <div className="form form-container">
             <form className="form-filter" onSubmit={handleSubmit}>
                 <div className="form-filter__item">
                     <Field name="subject" component="select">
                         <option value="">Все предметы</option>
-                        {subject.map((item, index) => (<option key={index}>{item}</option>))}
+                        {selects && selects.subjects.map((item, index) => (<option key={index}>{item}</option>))}
                     </Field>
                 </div>
                 <div className="form-filter__item">
@@ -30,7 +29,7 @@ let FilterForm = (props) => {
                 <div className="form-filter__item">
                     <Field name="genre" component="select">
                         <option value="">Все жанры</option>
-                        {genre.map((item, index) => (<option key={index}>{item}</option>))}
+                        {selects && selects.genres.map((item, index) => (<option key={index}>{item}</option>))}
                     </Field>
                 </div>
                 <div className="form-filter__item">

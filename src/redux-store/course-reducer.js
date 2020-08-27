@@ -3,13 +3,15 @@ import { coursesAPI } from "../api/api";
 const SET_COURSES = 'SET_COURSES';
 const TOGGLE_CURRENCY = 'TOGGLE_CURRENCY';
 const FILTER_COURSES = 'FILTER_COURSES';
-const TOGGLE_FECTCHING = 'TOGGLE_FECTCHING ';
+const TOGGLE_FECTCHING = 'TOGGLE_FECTCHING';
+const SET_DATA_SELECT = 'SET_DATA_SELECT';
 
 let initialState = {
     courses: [],
     isFetching: true,
     currencyBonus: false,
-    searchResult: null
+    searchResult: null,
+    selects: null
 }
 
 const courseReducer = (state = initialState, action) => {
@@ -58,6 +60,12 @@ const courseReducer = (state = initialState, action) => {
                 searchResult: filteredCourses !== undefined ? filteredCourses.length ? true : false : null
             }
 
+        case SET_DATA_SELECT:
+            return {
+                ...state,
+                selects: action.selects
+            }
+
         default:
             return state;
     }
@@ -67,6 +75,7 @@ export const setCourses = (courses) => ({ type: SET_COURSES, courses });
 export const toggleFetching = (fetching) => ({ type: TOGGLE_FECTCHING, fetching });
 export const toggleCurrency = (currencyBonus) => ({ type: TOGGLE_CURRENCY, currencyBonus });
 export const filterCourses = (filterData) => ({ type: FILTER_COURSES, filterData });
+export const setDataSelect = (selects) => ({ type: SET_DATA_SELECT, selects });
 
 export const getCourses = () => async (dispatch) => {
     dispatch(toggleFetching(true))
@@ -81,6 +90,11 @@ export const getFilterCourses = (filterData) => async (dispatch) => {
     await dispatch(setCourses(response));
     dispatch(filterCourses(filterData));
     dispatch(toggleFetching(false))
+}
+
+export const getDataSelect = () => async (dispatch) => {
+    let response = await coursesAPI.getDataForFrom();
+    dispatch(setDataSelect(response));
 }
 
 export default courseReducer;
